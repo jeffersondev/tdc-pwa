@@ -1,0 +1,19 @@
+<nav class="grey darken-4">
+  <div class="nav-wrapper">
+    <a href="" materialize="sideNav" data-activates="mobile-menu" class="button-collapse show-on-large" [materializeParams]="[{closeOnClick: true}]">
+      <i class="material-icons">menu</i>
+    </a>
+    <a routerLink="/" class="brand-logo center">TDC</a>
+    <a routerLink="/" class="right" style="margin-right: 10px"><i class="material-icons">account_circle</i></a>
+    <ul #menu id="mobile-menu" class="side-nav">
+      <li><a routerLink="/" routerLinkActive="active">home</a></li>
+      <li><a routerLink="/trilhas" routerLinkActive="active">trilhas</a></li>
+      <li><a routerLink="/programacao-personalizada" routerLinkActive="active">sua programação</a></li>
+      <li><a routerLink="/notificacoes" routerLinkActive="active">notificações</a></li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li><a>logout</a></li>
+    </ul>
+  </div>
+</nav>

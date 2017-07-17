@@ -1,0 +1,66 @@
+<div class="row">
+
+  <div class="input-field col s10">
+    <input id="search" type="search" placeholder="pesquisar trilhas" (keyup)="$event.keyCode == 13 && pesquisar($event)" [(ngModel)]="barraPesquisa">
+    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+    <i (click)="limparBarraPesquisa()" class="material-icons">close</i>
+  </div>
+
+  <div class="input-field col s2">
+    <button data-target="filtros" class="waves-effect waves-light black btn-floating"><i class="material-icons">filter_list</i></button>
+  </div>
+
+</div>
+
+
+<div class="row">
+
+  <!-- <div class="col s3 valign-wrapper">
+  </div> -->
+  <div class="col s12 valign-wrapper">
+    <a (click)="retrocederData()" class="btn-flat left"><i class="material-icons">keyboard_arrow_left</i></a>
+    <span>{{ dataSelecionada.diaSemana }} | {{ dataSelecionada.diaMes }}</span>
+    <a (click)="avancarData()" class="btn-flat right"><i class="material-icons">keyboard_arrow_right</i></a>
+  </div>
+  <!-- <div class="col s3 valign-wrapper">
+  </div> -->
+
+</div>
+
+<div class="row divider"></div>
+
+<div class="row">
+  <ul materialize="collapsible" class="collapsible" data-collapsible="accordion">
+    <li *ngFor="let trilha of trilhas" [hidden]="filtroTrilhaAtivado && !trilha.selecionada">
+      <div class="collapsible-header">
+        <p>{{ trilha.nome }}</p>
+      </div>
+      <div class="collapsible-body">
+        <p class="bold">{{ trilha.descricaoCurta }}</p>
+        <p>{{ trilha.descricaoCompleta }}</p>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div id="filtros" style="width: 95%;" class="modal modal-fixed-footer" materialize="modal" [materializeParams]="[{dismissible: false, startingTop: '0', endingTop: '10%'}]"
+  [materializeActions]="filtroActions">
+
+  <div class="modal-content">
+    <h4 class="center-align">filtrar trilhas</h4>
+
+    <div class="row" *ngFor="let trilha of trilhas">
+      <div class="switch col s12">
+        <label>
+          {{ trilha.nome }}<input type="checkbox" value="{{ trilha.id }}" [(ngModel)]="trilha.selecionada" ><span class="lever right"></span>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <a class="waves-effect waves-black btn-flat" (click)="resetarFiltros()">limpar</a>
+    <a class="waves-effect waves-black btn-flat" (click)="aplicarFiltros()">aplicar</a>
+  </div>
+</div>
